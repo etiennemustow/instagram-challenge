@@ -5,12 +5,25 @@ class CommentsController < ApplicationController
     redirect_to image_path(@image)
   end
 
+  def destroy
+   @image = Image.find(params[:image_id])
+   @comment = @image.comments.find(params[:id])
+   @comment.destroy
+   redirect_to image_path(@image)
+
   def index
-    render 'show'
+    @image = Image.find(params[:image_id])
+    render 'index'
   end
 
-private
-  def comment_params
-    params.require(:comment).permit(:commenter)
+  def show
+    @image = Image.find(params[:image_id])
+    @comment = @image.comments.find(params[:id])
   end
+end
+
+  private
+    def comment_params
+      params.require(:comment).permit(:commenter)
+    end
 end

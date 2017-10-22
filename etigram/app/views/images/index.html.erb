@@ -26,15 +26,17 @@ td{
       <tr>
         <td style="text-align: left"> <%= image.description %></td>
       </tr>
+      <tr>
+        <% image.comments.each do |c|%>
+        <td><%= c.commenter %><td>
+      </tr>
+      <%end%>
     <tr>
       <td><%= link_to 'View', image %></td>
-
     </tr>
     <% end %>
   </tbody>
 </table>
-
-</div>
 
 <br>
 

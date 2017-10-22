@@ -1,3 +1,8 @@
+<header>
+  <style>
+</style>
+<header>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -12,7 +17,12 @@
 <p>
   <%= c.commenter %>
 </p>
+<p> <%= link_to 'Delete',[c.image, c],
+             method: :delete,
+             data: { confirm: 'Are you sure?' } %>
+</p>
 <% end %>
+
 <%= form_with(model: [ @image, @image.comments.build ], local: true) do |form| %>
   <p>
     <%= form.text_field :commenter %>
