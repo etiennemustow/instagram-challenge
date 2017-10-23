@@ -1,0 +1,38 @@
+<header>
+  <style>
+</style>
+<header>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= image_tag @image.image.correct.url %>
+</p>
+
+<p>
+  <strong><%= @image.description %></strong>
+</p>
+
+<% @image.comments.each do |c| %>
+<p>
+  <%= c.commenter %>
+</p>
+<p> <%= link_to 'Delete',[c.image, c],
+             method: :delete,
+             data: { confirm: 'Are you sure?' } %>
+</p>
+<% end %>
+
+<%= form_with(model: [ @image, @image.comments.build ], local: true) do |form| %>
+  <p>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+  <% end %>
+
+
+<%= link_to 'Delete', @image, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Edit', edit_image_path(@image) %>
+<%= link_to 'Back', images_path %>
